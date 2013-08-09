@@ -25,13 +25,13 @@ along with "WiGPS Arduino Library". If not, see <http://www.gnu.org/licenses/>.
 
 #include "GPRMC.h"
 
-#define KMKNOT 1.852
-
 /*****************
  * Data constants 
  *****************/
 
-#define PROTOCOL 		"GPRMC"
+#define KMKNOT 1.852
+#define DEGREE_CHAR 176
+#define PROTOCOL   "GPRMC"
 #define BUFFER_LENGTH 	75
 
 /*******************

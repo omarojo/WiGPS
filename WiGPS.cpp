@@ -221,7 +221,8 @@ String WiGPS::latitude(void){
 	String m(latitudeMin);
 	String s(latitudeSec);
 	String r(latitudeRef);
-	String f = d + String((uchar)0xFFFFFFA1) + m + String('\'') + s + String('\"') + r;
+	char c = DEGREE_CHAR;
+	String f = d + String(c) + m + String('\'') + s + String('\"') + r;
 	return f;	
 }
 
@@ -237,7 +238,8 @@ String WiGPS::longitude(void){
 	String m(longitudeMin);
 	String s(longitudeSec);
 	String r(longitudeRef);
-	String f = d + String((uchar)0xFFFFFFA1) + m + String('\'') + s + String('\"') + r;
+	char c = DEGREE_CHAR;
+	String f = d + String(c) + m + String('\'') + s + String('\"') + r;
 	return f;
 }
 
@@ -263,7 +265,8 @@ String WiGPS::course(void){
 	 */
 
 	String s(Course);
-	String f = s + String((uchar)0xFFFFFFA1);
+	char c = DEGREE_CHAR;
+	String f = s + String(c);
 	return s;
 }
 
