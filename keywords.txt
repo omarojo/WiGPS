@@ -1,0 +1,36 @@
+# Copyright 2013 Daniele Faugiana
+  
+# This file is part of "WiGPS Arduino Library".
+
+# "WiGPS Arduino Library" is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# "WiGPS Arduino Library" is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with "WiGPS Arduino Library". If not, see <http://www.gnu.org/licenses/>.
+
+###################################
+# Datatypes (KEYWORD1)		      #
+###################################
+
+WiGPS 	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)    #
+#######################################
+
+time	KEYWORD2
+date 	KEYWORD2
+latitude 	KEYWORD2
+longitude 	KEYWORD2
+speed 	KEYWORD2
+course 	KEYWORD2
+on		KEYWORD2
+off		KEYWORD2
+update	KEYWORD2
