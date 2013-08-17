@@ -30,9 +30,9 @@ along with "WiGPS Arduino Library". If not, see <http://www.gnu.org/licenses/>.
  *****************/
 
 #define KMKNOT 1.852
-#define DEGREE_CHAR 176
+#define DEGREE_CHAR 0xDF
 #define PROTOCOL   "GPRMC"
-#define BUFFER_LENGTH 	75
+#define BUFFER_LENGTH   75
 
 /*******************
  * GPS POWER STATES
@@ -60,65 +60,65 @@ class WiGPS {
 
 private:
 
-	/***************
-	 * PRIVATE VARS
-	 ***************/
+    /***************
+     * PRIVATE VARS
+     ***************/
 
-	Port serialPort;			// A pointer to the serial port the GPS communicates through
-	uint portType;				// Port type, see upside to understand types
-   	uint powerPort;				// The pin Arduino uses to activate/deactivate the GPS
-	bool powerState;			// Power state of the GPS
+    Port serialPort;            // A pointer to the serial port the GPS communicates through
+    uint portType;              // Port type, see upside to understand types
+    uint powerPort;             // The pin Arduino uses to activate/deactivate the GPS
+    bool powerState;            // Power state of the GPS
 
-	int hours;					// Last UTC time data from the GPS
-	int minutes;
-	int seconds;
-	//int milliseconds;
+    int hours;                  // Last UTC time data from the GPS
+    int minutes;
+    int seconds;
+    //int milliseconds;
 
-	int day;					// Last UTC date data from the GPS
-	int month;
-	int year;
+    int day;                    // Last UTC date data from the GPS
+    int month;
+    int year;
 
-	int latitudeDeg;			// Last Latitude data from the GPS
-	int latitudeMin;
-	int latitudeSec;
-	char latitudeRef;
+    int latitudeDeg;            // Last Latitude data from the GPS
+    int latitudeMin;
+    int latitudeSec;
+    char latitudeRef;
 
-	int longitudeDeg;			// Last Longitude data from the GPS
-	int longitudeMin;
-	int longitudeSec;
-	char longitudeRef;
+    int longitudeDeg;           // Last Longitude data from the GPS
+    int longitudeMin;
+    int longitudeSec;
+    char longitudeRef;
 
-	int Speed;					// Last speed from the GPS (km/h)
-	int Course;					// Last course over ground (degrees from the north)
+    int Speed;                  // Last speed from the GPS (km/h)
+    int Course;                 // Last course over ground (degrees from the north)
 
-	int dataReady;				// Data ready to be read
+    int dataReady;              // Data ready to be read
 
-	/******************
-	 * PRIVATE METHODS
-	 ******************/
+    /******************
+     * PRIVATE METHODS
+     ******************/
 
-	void parseGPRMC(GPRMC*);		// Extract data from the GPRMC String
-	
+    void parseGPRMC(GPRMC*);        // Extract data from the GPRMC String
+    
 public:
 
-	/*****************
-	 * PUBLIC METHODS
-	 *****************/
-	
-	WiGPS(int, int, int);			
+    /*****************
+     * PUBLIC METHODS
+     *****************/
+    
+    WiGPS(int, int, int);           
 
-	int on(void);	 				// Powers on the GPS module
-	int off(void);	 				// Turns off the GPS module and stop tracking data
-	bool update(void);			 	// Starts fetching data from the GPS.
+    int on(void);                   // Powers on the GPS module
+    int off(void);                  // Turns off the GPS module and stop tracking data
+    bool update(void);              // Starts fetching data from the GPS.
 
-	String time(void);				// Returns an Arduino String object for the UTC time
-	String date(void);				// Returns an Arduino String object for the UTC date
-	String latitude(void);			// Returns an Arduino String object for the latitude
-	String longitude(void);			// Returns an Arduino String object for the longitude
-	String speed(void);				// Returns an Arduino String object for the speed
-	String course(void);			// Returns an Arduino String object for the course
+    String time(void);              // Returns an Arduino String object for the UTC time
+    String date(void);              // Returns an Arduino String object for the UTC date
+    String latitude(void);          // Returns an Arduino String object for the latitude
+    String longitude(void);         // Returns an Arduino String object for the longitude
+    String speed(void);             // Returns an Arduino String object for the speed
+    String course(void);            // Returns an Arduino String object for the course
 
-	~WiGPS();
+    ~WiGPS();
 };
 
 #endif

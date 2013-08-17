@@ -22,116 +22,116 @@ along with "WiGPS Arduino Library". If not, see <http://www.gnu.org/licenses/>.
 
 
 GPRMC::GPRMC(char* gprmc) : String(gprmc){
-	/*
-	 * Initialize the oject and parse the incoming String
-	 * looking for all commas in the String.
-	 */
+    /*
+     * Initialize the oject and parse the incoming String
+     * looking for all commas in the String.
+     */
 
-	int p = 0; 
-	int* c = commas;
+    int p = 0; 
+    int* c = commas;
 
-	for(int i = 0; i<COMMAS_NUMBER; i++){
-		p = this->indexOf(',', p);
-		if(p == -1){
-			while(i<COMMAS_NUMBER){
-				*(c++) = -1;
-				i++;
-			};
-		}
-		else{
-			*(c++) = (p++);
-		}
-	}
+    for(int i = 0; i<COMMAS_NUMBER; i++){
+        p = this->indexOf(',', p);
+        if(p == -1){
+            while(i<COMMAS_NUMBER){
+                *(c++) = -1;
+                i++;
+            };
+        }
+        else{
+            *(c++) = (p++);
+        }
+    }
 
-	p = this->indexOf('*') + 1;
-	if(p > 0){
-		stringChecksum = this->substring(p).toInt();
-	}else{
-		stringChecksum = -1;
-	};	
+    p = this->indexOf('*') + 1;
+    if(p > 0){
+        stringChecksum = this->substring(p).toInt();
+    }else{
+        stringChecksum = -1;
+    };  
 }
 
 
 int GPRMC::checksum(void){
-	/*
-	 * Perform the checksum of the 
-	 * entire String if possible.
-	 */
-	int ret_value = CHECKSUM_NOT_PERFORMED;
-	if(stringChecksum == -1){
-		ret_value = CHECKSUM_NOT_PERFORMED;
-	}
-	else{
+    /*
+     * Perform the checksum of the 
+     * entire String if possible.
+     */
+    int ret_value = CHECKSUM_NOT_PERFORMED;
+    if(stringChecksum == -1){
+        ret_value = CHECKSUM_NOT_PERFORMED;
+    }
+    else{
 
-		// Perform the checksum and select what to return
+        // Perform the checksum and select what to return
 
-	}
-	
-	return ret_value;
+    }
+    
+    return ret_value;
 }
 
 
 String GPRMC::findElements(int elementNumber){
-	/*
-	 * Calculate the element relative subString length
-	 * from the raw GPRMC String. Then, extract
-	 * a subString and return it
-	 */
+    /*
+     * Calculate the element relative subString length
+     * from the raw GPRMC String. Then, extract
+     * a subString and return it
+     */
 
-	// Get the comma right BEFORE the selected element
-	int startComma = commas[elementNumber-1];
-	// Get the comma right AFTER the selected element
-	int stopComma = commas[elementNumber];
-	//Return the substring inside the commas
-	return this->substring(startComma+1, stopComma);
+    // Get the comma right BEFORE the selected element
+    int startComma = commas[elementNumber-1];
+    // Get the comma right AFTER the selected element
+    int stopComma = commas[elementNumber];
+    //Return the substring inside the commas
+    return this->substring(startComma+1, stopComma);
 }
 
 
 String GPRMC::UTCtime(void){
-	return findElements(UTC_TIME);
+    return findElements(UTC_TIME);
 }
 
 
 String GPRMC::dataValid(void){
-	return findElements(DATA_VALID);
+    return findElements(DATA_VALID);
 }
 
 
 String GPRMC::UTCdate(void){
-	return findElements(UTC_DATE);
+    return findElements(UTC_DATE);
 }
 
 
 String GPRMC::latitudeDeg(void){
-	return findElements(LATITUDE_DEGREES);
+    return findElements(LATITUDE_DEGREES);
 }
 
 
 String GPRMC::latitudeRef(void){
-	return findElements(LATITUDE_REFERENCE);
+    return findElements(LATITUDE_REFERENCE);
 }
 
 
 String GPRMC::longitudeDeg(void){
-	return findElements(LONGITUDE_DEGREES);
+    return findElements(LONGITUDE_DEGREES);
 }
 
 
 String GPRMC::longitudeRef(void){
-	return findElements(LONGITUDE_REFERENCE);
+    return findElements(LONGITUDE_REFERENCE);
 }
 
 
 String GPRMC::course(void){
-	return findElements(COURSE);
+    return findElements(COURSE);
 }
 
 
 String GPRMC::speed(void){
-	return findElements(SPEED);
+    return findElements(SPEED);
 }
 
 
 String GPRMC::opMode(void){
-	return findElements(OPERATION_MODE);
+    return findElements(OPERATION_MODE);
 }
