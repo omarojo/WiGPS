@@ -1,38 +1,24 @@
-/*
-Copyright 2013 Daniele Faugiana
-  
-This file is part of "WiGPS Arduino Library".
+#include "application.h"
+// This #include statement was automatically added by the Spark IDE.
+#include "WiGPS.h"
 
-"WiGPS Arduino Library" is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+// This #include statement was automatically added by the Spark IDE.
+#include "GPRMC.h"
 
-"WiGPS Arduino Library" is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with "WiGPS Arduino Library". If not, see <http://www.gnu.org/licenses/>.
-*/
-
-#include <SoftwareSerial.h>
-#include <WiGPS.h>
 
 /***************
  * WiGPS Arduino Library, BasicGPS example.
  * Connect the GPS-11571 module to your Arduino
  * Pins are connected as following:
- * VCC: 5V, common GND
- * RX to pin 8
- * TX to pin 9
+ * VCC: 3.3V, common GND
+ * RX - Serial1
+ * TX - Serial1
  * Backup battery not connected
  * Power ON/OFF to pin 7
  ***************/
 
 // Initialize a new WiGPS object
-WiGPS gps(7,8,9);
+WiGPS gps(7);//Not really needed right now.. disconnected means GPS is ON
 
 void setup() {
   // You will inspect values trough the Serial Port
@@ -65,3 +51,30 @@ void setup() {
 void loop() {
   // Loop forever here
 }
+
+
+
+
+
+// void setup() 
+// {
+//   Serial.begin(9600);
+//   Serial1.begin(9600);
+
+// }
+
+// void loop() 
+// {
+//   // read from port 0, send to port 1:
+//   /*if (Serial.available()) 
+//   {
+//     int inByte = Serial.read();
+//     Serial1.print(inByte, BYTE);
+//   }*/
+//   // read from port 1, send to port 0:
+//   if (Serial1.available()) 
+//   {
+//     int inByte = Serial1.read();
+//     Serial.println(inByte);
+//   }
+// }
