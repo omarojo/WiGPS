@@ -19,7 +19,7 @@
 
 #ifndef _WIGPS_H
 #define _WIGPS_H
-#include "application.h"
+#include "application.h" //needs to be placed in extra classes
 //#include <arduino.h>
 //#include <SoftwareSerial.h>
 
@@ -31,8 +31,8 @@
 
 #define KMKNOT 1.852
 #define DEGREE_CHAR 0xDF
-#define PROTOCOL   "$GPRMC"
-#define BUFFER_LENGTH_2   75
+#define PROTOCOL   "GPRMC"
+#define BUFFER_LENGTH_2   75 //Had to change the name because made conflict with some other SparkCore define named BUFFER_LENGTH
 
 /*******************
  * GPS POWER STATES
@@ -106,6 +106,7 @@ public:
      *****************/
     
     WiGPS(int);
+    void init(int);
     
     int on(void);                   // Powers on the GPS module
     int off(void);                  // Turns off the GPS module and stop tracking data

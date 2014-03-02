@@ -61,25 +61,17 @@ void WiGPS::parseGPRMC(GPRMC* str){
 
 
 WiGPS::WiGPS(int pw){
-    /*
-     * Creates a new SoftwareSerial port
-     * in the memory HEAP and assign a pointer
-     * to the serialPort member, then call the
-     * softwareserial constructor.
-     */
     
-    //Port serial = new SoftwareSerial(rx,tx);
-    
-    
+    return;
+}
+void WiGPS::init(int pw) {
     dataReady = FALSE;
-    //serialPort = serial;
     Serial1.begin(9600);//serialPort->begin(9600);
     powerPort = pw;
     pinMode(pw, OUTPUT);
     digitalWrite(powerPort, LOW);
     return;
 }
-
 
 int WiGPS::on(void){
     /*
@@ -141,48 +133,39 @@ bool WiGPS::update(void){
     int dataReady = FALSE;
     int failed5 = 0;
     
-    Serial.println("1- primer while inicia: ");
+    
     while(buf - buffer < BUFFER_LENGTH_2){
         *(buf++) = '\0';
-        Serial.println("buffer cycle ");
     }
-    Serial.println("1- primer while termine ");
     buf = buffer;
     
     while(!dataReady){
-        //Serial.println("2- Segudno while entra ");
         // Wait for the first incoming header
-        //Serial.println("3- while inicia ");
         while(Serial1.read() != '$');
-        //Serial.println("3 - while termina ");
-        //Serial.println("4 - ciclo for inicia para 5 veces ");
         // Store the first 5 chars
-        for(int i = 0; i<6; i++){
-            Serial.println("4 - vez ");
+        for(int i = 0; i<5; i++){
             while(!Serial1.available());
             
             *(buf++) = Serial1.read();
-            
-            
         }
-        // Serial.println("4 - ciclo for termina ");
         //Serial.println("buffer:");
-        //Serial.println(buffer);
+        // Serial.println(buffer);
         if(strncmp(buffer, PROTOCOL, 5) == 0){
-            //Serial.println("5- do while ");
+            //Serial.println(buffer);
             // This is the right String, go on
             do {
                 // Fetch the rest of the GPRMC String
                 while(!Serial1.available());
                 *buf = Serial1.read();
             } while(*(buf++) != '\n');
-            //Serial.println("5 - do while termina ");
+            
             GPRMC str(buffer);
             Serial.println(str);
+            
             if(str.dataValid().equals("A")){
                 // The string is ok, extract data
                 // TODO: ADD CHECKSUM CONTROL TO THE STRING
-                
+                //Serial.println(str);
                 parseGPRMC(&str);
                 
                 //Now break the cycle
@@ -190,13 +173,13 @@ bool WiGPS::update(void){
                 return dataReady;
             };
         };
-        Serial.println("6- Data is not ready ");
-        Serial.println("------");
-        failed5++;
-        if(failed5 == 500){
-            Serial.println("7- Too many fails.. quitting ");
-            return TRUE;
-        }
+        //Serial.println("6- Data is not ready ");
+        //Serial.println("------");
+        //failed5++;
+        // if(failed5 == 1500){
+        //     Serial.println("7- Too many fails.. quitting ");
+        //     return TRUE;
+        // }
         
         buf = buffer;
     };
